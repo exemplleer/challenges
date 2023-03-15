@@ -67,46 +67,53 @@ const itinerary = (tree, start, end) => {
 
 export default itinerary;
 
-
-
 /*
-const makeJoints = (tree, parent) => {
-  const [leaf, children] = tree;
 
-  if (!children) {
-    return { [leaf]: [parent] };
+const buildAdjacencyList = (node, parent = null) => {
+  const [item, branches] = node;
+
+  if (!branches) {
+    return { [item]: [parent] };
   }
 
-  const flatChildren = _.flatten(children);
-  const neighbors = [...flatChildren, parent]
-    .filter((neighbor) => neighbor && !_.isArray(neighbor));
-  const joints = children
-    .reduce((acc, child) => ({ ...acc, ...makeJoints(child, leaf) }), {});
+  const flatBranches = branches.flat();
 
-  return { [leaf]: neighbors, ...joints };
+  const neighbours = [...flatBranches, parent].filter(
+    (neighbour) => neighbour && !Array.isArray(neighbour),
+  );
+
+  const adjacency = branches.reduce(
+    (acc, branch) => ({ ...acc, ...buildAdjacencyList(branch, item) }),
+    [],
+  );
+
+  return { [item]: neighbours, ...adjacency };
 };
 
-const findRoute = (start, finish, joints) => {
-  const iter = (current, route) => {
-    const routeToCurrent = [...route, current];
+const buildPath = (start, finish, adjacencyList) => {
+  const iter = (current, path) => {
+    const currentPath = [...path, current];
+    const roads = adjacencyList[current];
 
     if (current === finish) {
-      return routeToCurrent;
+      return currentPath;
     }
 
-    const neighbors = joints[current];
-    const filtered = neighbors
-      .filter((neighbor) => !routeToCurrent.includes(neighbor));
+    const roadsWithoutVisited = roads.filter(
+      (city) => !currentPath.includes(city),
+    );
 
-    return filtered
-      .reduce((acc, neighbor) => _.concat(acc, iter(neighbor, routeToCurrent)), []);
+    return roadsWithoutVisited.map((city) => iter(city, currentPath)).flat();
   };
 
   return iter(start, []);
 };
 
-export default (tree, start, finish) => {
-  const joints = makeJoints(tree);
-  return findRoute(start, finish, joints);
+const itinerary = (tree, start, finish) => {
+  const adjacency = buildAdjacencyList(tree);
+  return buildPath(start, finish, adjacency);
 };
+
+export default itinerary;
+
 */
