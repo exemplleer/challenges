@@ -1,1 +1,3 @@
-This repository contain my solutions of different tasks
+# challenges
+## Description
+This repository contains my JS code and solutions of different tasks.
