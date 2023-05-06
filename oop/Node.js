@@ -14,6 +14,16 @@
   ребёнка. Если ребёнок в узле отсутствует, геттер возвращает null.
 - search(key) — выполняет поиск узла в правильном двоичном дереве по ключу и
   возвращает узел. Если узел не найден, возвращается null.
+- Метод insert(key) — выполняет добавление узла, формируя правильное двоичное
+  дерево.
+- getCount() — возвращает количество узлов в дереве.
+- getSum() — возвращает сумму всех ключей дерева.
+- toArray() — возвращает одномерный массив содержащий все ключи.
+- toString() — возвращает строковое представление дерева.
+- every(fn) — проверяет, удовлетворяют ли все ключи дерева условию, заданному
+  в передаваемой функции.
+- some(fn) - проверяет, удовлетворяет ли какой-либо ключ дерева условию,
+  заданному в передаваемой функции.
 */
 
 class Node {
@@ -65,6 +75,45 @@ class Node {
       }
       this.getLeft().insert(number);
     }
+  }
+
+  toArray(acc = []) {
+    acc.push(this.getKey());
+
+    if (this.getLeft() !== null) {
+      this.getLeft().toArray(acc);
+    }
+
+    if (this.getRight() !== null) {
+      this.getRight().toArray(acc);
+    }
+
+    return acc;
+  }
+
+  getCount() {
+    return this.toArray().length;
+  }
+
+  getSum() {
+    return this.toArray().reduce((sum, num) => sum + num, 0);
+  }
+
+  toString() {
+    const arr = this.toArray();
+    return `(${arr.join(', ')})`;
+  }
+
+  every(fn) {
+    const arr = this.toArray();
+    const filtered = arr.filter(fn);
+    return arr.length === filtered.length;
+  }
+
+  some(fn) {
+    const arr = this.toArray();
+    const filtered = arr.filter(fn);
+    return filtered.length !== 0;
   }
 }
 
