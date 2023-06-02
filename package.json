@@ -1,0 +1,12 @@
+{
+  "name": "challenges",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Сollection of tasks solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "exemplleer",
+  "license": "ISC"
+}
