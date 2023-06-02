@@ -14,6 +14,31 @@ stringify(value[, replacer[, spacesCount]])
     Строка - отступ для ключа; Значение по умолчанию - один пробел.
   spacesCount, необязательный
     Число - количество повторов отступа ключа. Значение по умолчанию - 1.
+
+Примеры:
+stringify('hello'); // hello - значение приведено к строке, но не имеет кавычек
+stringify(true);    // true
+stringify(5);       // 5
+
+const data = { hello: 'world', is: true, nested: { count: 5 } };
+stringify(data); // то же самое что stringify(data, ' ', 1);
+// {
+//  hello: world
+//  is: true
+//  nested: {
+//   count: 5
+//  }
+// }
+
+stringify(data, '|-', 2);
+// Символ, переданный вторым аргументом повторяется столько раз, сколько указано третьим аргументом.
+// {
+// |-|-hello: world
+// |-|-is: true
+// |-|-nested: {
+// |-|-|-|-count: 5
+// |-|-}
+// }
 */
 
 const stringify = (data, replacer = ' ', spacesCount = 1) => {
@@ -54,7 +79,6 @@ const stringify = (data, replacer = ' ', spacesCount = 1) => {
 export default stringify;
 
 /*
-
 import _ from 'lodash';
 
 const stringify = (value, replacer = ' ', spacesCount = 1) => {
@@ -82,5 +106,4 @@ const stringify = (value, replacer = ' ', spacesCount = 1) => {
 };
 
 export default stringify;
-
 */

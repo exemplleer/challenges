@@ -13,7 +13,7 @@ const bubbleSort = (inputArray) => {
       }
     }
     stepsCount -= 1;
-  } while(swapped);
+  } while (swapped);
   return arr;
 };
 

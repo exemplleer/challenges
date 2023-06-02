@@ -12,8 +12,6 @@ protect.js
 выбрасываться исключение. В реализации используйте Proxy.
 
 Примеры:
-import protect from '../protect.js';
-
 class Course {
   constructor(name) {
     this._name = name;

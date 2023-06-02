@@ -1,14 +1,13 @@
 /*
-Реализуйте и экспортируйте по умолчанию функцию, которая выстраивает маршрут между городами.
-Функция принимает 3 аргумента:
+Реализуйте и экспортируйте по умолчанию функцию, которая выстраивает маршрут
+между городами. Функция принимает 3 аргумента:
   - дерево городов
   - город старта
   - город окончания маршрута
-и возвращает массив городов, выстроенный в том же порядке, в котором они находятся на пути
-следования по маршруту.
-*/
+и возвращает массив городов, выстроенный в том же порядке, в котором они
+находятся на пути следования по маршруту.
 
-/* <--- tree of cities ---> */
+Дерево городов:
 const cities = [
   'Moscow',
   [
@@ -27,7 +26,14 @@ const cities = [
     ['Tver', [['Klin'], ['Dubna'], ['Rzhev']]],
   ],
 ];
-/* <----------------------> */
+
+Примеры:
+itinerary(tree, 'Dubna', 'Kostroma');
+// ['Dubna', 'Tver', 'Moscow', 'Ivanovo', 'Kostroma']
+
+itinerary(tree, 'Borisovka', 'Kurchatov');
+// ['Borisovka', 'Belgorod', 'Kursk', 'Kurchatov']
+*/
 
 import _ from 'lodash';
 
@@ -68,7 +74,6 @@ const itinerary = (tree, start, end) => {
 export default itinerary;
 
 /*
-
 const buildAdjacencyList = (node, parent = null) => {
   const [item, branches] = node;
 
@@ -115,5 +120,4 @@ const itinerary = (tree, start, finish) => {
 };
 
 export default itinerary;
-
 */

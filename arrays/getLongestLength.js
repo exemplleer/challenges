@@ -1,9 +1,14 @@
 /*
-Реализуйте функцию getLongestLength(), принимающую на вход строку и возвращающую длину максимальной
-последовательности из неповторяющихся символов. Подстрока может состоять из одного символа.
-Например в строке qweqrty, можно выделить следующие подстроки: qwe, weqrty. Самой длинной будет
-weqrty.
+Реализуйте функцию getLongestLength(), принимающую на вход строку и
+возвращающую длину максимальной последовательности из неповторяющихся символов.
+Подстрока может состоять из одного символа. Например в строке qweqrty, можно
+выделить следующие подстроки: qwe, weqrty. Самой длинной будет weqrty.
 Экспортируйте функцию по умолчанию.
+
+Примеры:
+getLongestLength('abcdeef'); // 5
+getLongestLength('jabjcdel'); // 7
+getLongestLength(''); // 0
 */
 
 const findMaxArrayLength = (arr) => arr.reduce((max, el) => (el.length > max ? el.length : max), 0);
@@ -11,8 +16,8 @@ const findMaxArrayLength = (arr) => arr.reduce((max, el) => (el.length > max ? e
 const getLongestLength = (str) => {
   const charsValue = [];
   let uniqChars = [];
-
   let counter = -1;
+
   for (let i = 0; i <= str.length; i += 1) {
     const char = str[i];
     if (uniqChars.includes(char) || !char) {
@@ -29,9 +34,7 @@ const getLongestLength = (str) => {
 
 export default getLongestLength;
 
-
 /*
-
 const getLongestLength = (str) => {
   let sequence = [];
   let maxLength = 0;
@@ -62,5 +65,4 @@ const getLongestLength = (str) => {
 };
 
 export default getLongestLength;
-
 */

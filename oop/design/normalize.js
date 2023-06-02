@@ -1,9 +1,9 @@
-/* 
+/*
 Реализуйте и экспортируйте по умолчанию функцию normalize() которая принимает
 на вход список городов и стран, нормализует их имена, сортирует города и
 группирует их по стране.
 
-Примеры:
+Пример:
 const countries = [
   { name: 'Miami', country: 'usa' },
   { name: 'samarA', country: '  ruSsiA' },
@@ -48,6 +48,7 @@ const normalize = (countries) => {
   return normalizedCountries;
 };
 
+export default normalize;
 /*
 
 export default (data) => data

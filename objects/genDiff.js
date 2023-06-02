@@ -10,6 +10,19 @@
     отличаются
   - unchanged — ключ присутствовал и в первом и во втором объектах с
     одинаковыми значениями
+
+Пример:
+genDiff(
+  { one: 'eon', two: 'two', four: true },
+  { two: 'own', zero: 4, four: true },
+);
+
+// {
+//   one: 'deleted',
+//   two: 'changed',
+//   four: 'unchanged',
+//   zero: 'added',
+// }
 */
 
 import _ from 'lodash';
