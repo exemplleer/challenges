@@ -51,3 +51,31 @@ const getDirectorySize = (dirpath, callback) => {
 };
 
 export { getDirectorySize };
+
+/*
+Теперь то же самое нужно сделать с помощью промисов.
+
+Пример:
+getDirectorySizePromise('/usr/local/bin').then(console.log);
+*/
+
+// eslint-disable-next-line import/first
+import fsp from 'fs/promises';
+
+const getAbsolutePath = (dirpath, filename) => path.join(dirpath, filename);
+
+const getDirectorySizePromise = (dirpath) => {
+  const promise = fsp.readdir(dirpath).then((names) => {
+    const paths = names.map((name) => getAbsolutePath(dirpath, name));
+    const promises = paths.map((filepath) => fsp.stat(filepath));
+
+    return Promise.all(promises);
+  });
+
+  return promise.then((stats) => _.sumBy(
+    stats.filter((stat) => stat.isFile()),
+    'size',
+  ));
+};
+
+export { getDirectorySizePromise };
